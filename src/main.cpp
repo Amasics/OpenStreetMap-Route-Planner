@@ -1,5 +1,6 @@
 #include <optional>
 #include <fstream>
+#include <sstream>
 #include <iostream>
 #include <vector>
 #include <string>
@@ -9,6 +10,10 @@
 #include "route_planner.h"
 
 using namespace std::experimental;
+using std::cout;
+using std::cin;
+using std::string;
+using std::istringstream;
 
 static std::optional<std::vector<std::byte>> ReadFile(const std::string &path)
 {   
@@ -25,6 +30,10 @@ static std::optional<std::vector<std::byte>> ReadFile(const std::string &path)
     if( contents.empty() )
         return std::nullopt;
     return std::move(contents);
+}
+
+static bool isOnGrid(float pos) {
+    return pos >= 0 && pos <= 100;
 }
 
 int main(int argc, const char **argv)
@@ -55,12 +64,26 @@ int main(int argc, const char **argv)
     // TODO 1: Declare floats `start_x`, `start_y`, `end_x`, and `end_y` and get
     // user input for these values using std::cin. Pass the user input to the
     // RoutePlanner object below in place of 10, 10, 90, 90.
+    string input;
+    float start_x; float start_y;
+    float end_x; float end_y;
+    cout << "Input start and end positions (start_x start_y end_x end y): " << "\n";
+    // prompt user input until a valid input is provided
+    while (true) {
+        getline(cin, input);
+        istringstream inputStream(input);
+        if ((inputStream >> start_x >> start_y >> end_x >> end_y) && isOnGrid(start_x) 
+            && isOnGrid(start_y) && isOnGrid(end_x) && isOnGrid(end_y)) {
+            break;
+        }
+        cout << "Invalid input, please try again" << "\n";
+    }
 
     // Build Model.
     RouteModel model{osm_data};
 
     // Create RoutePlanner object and perform A* search.
-    RoutePlanner route_planner{model, 10, 10, 90, 90};
+    RoutePlanner route_planner{model, start_x, start_y, end_x, end_y};
     route_planner.AStarSearch();
 
     std::cout << "Distance: " << route_planner.GetDistance() << " meters. \n";
