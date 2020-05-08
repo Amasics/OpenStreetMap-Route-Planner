@@ -67,13 +67,42 @@ int main(int argc, const char **argv)
     string input;
     float start_x; float start_y;
     float end_x; float end_y;
-    cout << "Input start and end positions (start_x start_y end_x end y): " << "\n";
-    // prompt user input until a valid input is provided
+    // Ask for start x position until a valid input is provided
+    cout << "Input start x position: " << "\n";
     while (true) {
         getline(cin, input);
         istringstream inputStream(input);
-        if ((inputStream >> start_x >> start_y >> end_x >> end_y) && isOnGrid(start_x) 
-            && isOnGrid(start_y) && isOnGrid(end_x) && isOnGrid(end_y)) {
+        if (inputStream >> start_x && isOnGrid(start_x)) {
+            break;
+        }
+        cout << "Invalid input, please try again" << "\n";
+    }
+    // Ask for start y position until a valid input is provided
+    cout << "Input start y position: " << "\n";
+    while (true) {
+        getline(cin, input);
+        istringstream inputStream(input);
+        if (inputStream >> start_y && isOnGrid(start_y)) {
+            break;
+        }
+        cout << "Invalid input, please try again" << "\n";
+    }
+    // Ask for end x position until a valid input is provided
+    cout << "Input end x position: " << "\n";
+    while (true) {
+        getline(cin, input);
+        istringstream inputStream(input);
+        if (inputStream >> end_x && isOnGrid(end_x)) {
+            break;
+        }
+        cout << "Invalid input, please try again" << "\n";
+    }
+     // Ask for end y position until a valid input is provided
+    cout << "Input end y position: " << "\n";
+    while (true) {
+        getline(cin, input);
+        istringstream inputStream(input);
+        if (inputStream >> end_y && isOnGrid(end_y)) {
             break;
         }
         cout << "Invalid input, please try again" << "\n";
