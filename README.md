@@ -10,4 +10,4 @@ Create a route planner that plots a path between two points on a map using real 
 ![Code Structure Image](code_structure.png)
 
 ## Sample Output
-![Sample Map Output](sample_output.png)
+<div style="text-align:center"><img src="sample_output.png" /></div>
