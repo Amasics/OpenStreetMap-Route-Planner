@@ -1,6 +1,6 @@
 # OpenStreetMap Route Planning Project
 
-OpenStreetMap route planning project from Udacity's C++ Nanodegree program
+OpenStreetMap route planning project from the [Udacity C++ Nanodegree Program](https://www.udacity.com/course/c-plus-plus-nanodegree--nd213).
 
 ## Description
 
